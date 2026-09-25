@@ -6,6 +6,10 @@ import Main from './components/Main';
 import HealthcareEcosystem from './components/HealthcareEcosystem';
 import Features from './components/Features';
 import EMRVault from './components/EMRVault';
+import PatientPlatform from './components/PatientPlatform';
+import DoctorPlatform from './components/DoctorPlatform';
+import BusinessPlatform from './components/BusinessPlatform';
+import TrustSecurity from './components/TrustSecurity';
 import HowItWorks from './components/HowItWorks';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -27,6 +31,18 @@ export default function Landing() {
 
       {/* ── Electronic Medical Records & Security ─────────────────────── */}
       <EMRVault />
+
+      {/* ── Patient Platform & Digital Health Locker ──────────────────── */}
+      <PatientPlatform />
+
+      {/* ── Doctor Platform & Practice Management ────────────────────── */}
+      <DoctorPlatform />
+
+      {/* ── Business Platform & Corporate Health Management ─────────── */}
+      <BusinessPlatform />
+
+      {/* ── Trust & Security Infographic & Commitments ───────────────── */}
+      <TrustSecurity />
 
       {/* ── 3-Step How It Works Guide ─────────────────────────────────── */}
       <HowItWorks />
