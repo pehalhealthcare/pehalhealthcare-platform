@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ── PehalHealthcare Design Tokens ───────────────────────────────────────── */
+:root {
+  /* Brand blue — matches PehalHealthcare identity */
+  --ph-blue-50:  #eff6ff;
+  --ph-blue-100: #dbeafe;
+  --ph-blue-200: #bfdbfe;
+  --ph-blue-500: #3b82f6;
+  --ph-blue-600: #1d63d8;
+  --ph-blue-700: #1a56c7;
+  --ph-blue-800: #1e40af;
+
+  /* Semantic greens */
+  --ph-green-50:  #f0fdf4;
+  --ph-green-100: #dcfce7;
+  --ph-green-600: #16a34a;
+
+  /* Neutral palette */
+  --ph-slate-50:  #f8fafc;
+  --ph-slate-100: #f1f5f9;
+  --ph-slate-200: #e2e8f0;
+  --ph-slate-300: #cbd5e1;
+  --ph-slate-400: #94a3b8;
+  --ph-slate-500: #64748b;
+  --ph-slate-600: #475569;
+  --ph-slate-700: #334155;
+  --ph-slate-800: #1e293b;
+  --ph-slate-900: #0f172a;
+
+  /* Surfaces */
+  --ph-bg:        #f5f7fb;
+  --ph-surface:   #ffffff;
+  --ph-border:    #e4e8f0;
+
+  /* Shadows */
+  --ph-shadow-sm: 0 1px 3px 0 rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.04);
+  --ph-shadow:    0 4px 16px 0 rgba(30,67,216,.07), 0 1px 4px 0 rgba(0,0,0,.05);
+  --ph-shadow-md: 0 8px 24px 0 rgba(30,67,216,.10), 0 2px 8px 0 rgba(0,0,0,.06);
+
+  /* Sidebar */
+  --ph-sidebar-w: 240px;
+  --ph-sidebar-collapsed-w: 68px;
+}
+
+/* ── Base reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--ph-bg);
+  color: var(--ph-slate-900);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Headings ────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--ph-slate-900);
+  line-height: 1.3;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Custom scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--ph-slate-200);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ph-slate-300); }
+
+/* ── Focus ring ──────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ph-blue-600);
+  outline-offset: 2px;
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+.ph-card {
+  background: var(--ph-surface);
+  border: 1px solid var(--ph-border);
+  border-radius: 12px;
+  box-shadow: var(--ph-shadow-sm);
+}
+
+.ph-card-hover {
+  transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+.ph-card-hover:hover {
+  box-shadow: var(--ph-shadow);
+  border-color: var(--ph-blue-200);
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes ph-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ph-fade-in {
+  animation: ph-fade-in 240ms ease forwards;
+}
+
+@keyframes ph-scroll-pulse {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+@keyframes ph-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.ph-scroll-text-pulse {
+  animation: ph-scroll-pulse 1.8s ease-in-out infinite;
+}
+
+.ph-scroll-arrow-bounce {
+  animation: ph-arrow-bounce 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-scroll-text-pulse,
+  .ph-scroll-arrow-bounce,
+  .ph-fade-in {
+    animation: none !important;
+  }
+}
+
