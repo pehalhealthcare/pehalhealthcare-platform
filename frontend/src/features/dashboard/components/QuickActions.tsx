@@ -1,6 +1,7 @@
 // src/features/dashboard/components/QuickActions.tsx
+// Matches the quick action shortcuts visible in the reference portal screenshot.
 
-import { Calendar, Upload, AlertCircle, Video } from 'lucide-react';
+import { Calendar, Upload, AlertCircle, Video, FlaskConical, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 
@@ -9,37 +10,87 @@ interface QuickAction {
   label: string;
   icon: React.ElementType;
   to: string;
-  color: string;
-  bg: string;
+  iconColor: string;
+  iconBg: string;
 }
 
 const ACTIONS: QuickAction[] = [
-  { id: 'book', label: 'Book Appointment', icon: Calendar, to: '/portal/appointments/book', color: 'text-blue-700', bg: 'bg-blue-50 hover:bg-blue-100' },
-  { id: 'upload', label: 'Upload Report', icon: Upload, to: '/portal/emr', color: 'text-emerald-700', bg: 'bg-emerald-50 hover:bg-emerald-100' },
-  { id: 'emergency', label: 'Emergency Card', icon: AlertCircle, to: '/portal/emergency-card', color: 'text-red-700', bg: 'bg-red-50 hover:bg-red-100' },
-  { id: 'tele', label: 'Teleconsult', icon: Video, to: '/portal/teleconsultation', color: 'text-violet-700', bg: 'bg-violet-50 hover:bg-violet-100' },
+  {
+    id: 'book',
+    label: 'Book Appointment',
+    icon: Calendar,
+    to: '/portal/appointments/book',
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-50 group-hover:bg-blue-100',
+  },
+  {
+    id: 'upload',
+    label: 'Upload Report',
+    icon: Upload,
+    to: '/portal/emr',
+    iconColor: 'text-emerald-600',
+    iconBg: 'bg-emerald-50 group-hover:bg-emerald-100',
+  },
+  {
+    id: 'lab',
+    label: 'Lab Reports',
+    icon: FlaskConical,
+    to: '/portal/lab-reports',
+    iconColor: 'text-violet-600',
+    iconBg: 'bg-violet-50 group-hover:bg-violet-100',
+  },
+  {
+    id: 'tele',
+    label: 'Teleconsult',
+    icon: Video,
+    to: '/portal/teleconsultation',
+    iconColor: 'text-cyan-600',
+    iconBg: 'bg-cyan-50 group-hover:bg-cyan-100',
+  },
+  {
+    id: 'rx',
+    label: 'Prescriptions',
+    icon: FileText,
+    to: '/portal/prescriptions',
+    iconColor: 'text-amber-600',
+    iconBg: 'bg-amber-50 group-hover:bg-amber-100',
+  },
+  {
+    id: 'emergency',
+    label: 'Emergency Card',
+    icon: AlertCircle,
+    to: '/portal/emergency-card',
+    iconColor: 'text-red-600',
+    iconBg: 'bg-red-50 group-hover:bg-red-100',
+  },
 ];
 
 export default function QuickActions() {
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-5">
-      <h2 className="text-sm font-semibold text-slate-900 mb-4">Quick Actions</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div className="mb-4">
+      <h2 className="text-[12px] font-semibold text-slate-500 uppercase tracking-wider mb-3">
+        Quick Actions
+      </h2>
+      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
           return (
             <Link
               key={action.id}
               to={action.to}
-              className={clsx(
-                'flex flex-col items-center gap-2 rounded-xl p-4 text-center transition-colors duration-150',
-                action.bg,
-              )}
+              className="group flex flex-col items-center gap-2 rounded-xl border border-slate-200 bg-white p-3 text-center hover:border-blue-200 hover:shadow-sm transition-all duration-150"
             >
-              <div className={clsx('h-9 w-9 rounded-xl flex items-center justify-center', action.bg)}>
-                <Icon className={clsx('h-5 w-5', action.color)} />
+              <div
+                className={clsx(
+                  'h-10 w-10 rounded-xl flex items-center justify-center transition-colors',
+                  action.iconBg,
+                )}
+              >
+                <Icon className={clsx('h-5 w-5', action.iconColor)} />
               </div>
-              <span className={clsx('text-xs font-semibold', action.color)}>{action.label}</span>
+              <span className="text-[11px] font-medium text-slate-600 leading-tight text-center">
+                {action.label}
+              </span>
             </Link>
           );
         })}

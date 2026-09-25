@@ -34,11 +34,14 @@ import Notifications from '@/pages/portal/Notifications';
 import Profile from '@/pages/portal/Profile';
 import Support from '@/pages/portal/Support';
 
+// Public Landing page
+import Landing from '@/pages/public/Landing';
+
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Redirect root to dashboard */}
-      <Route index element={<Navigate to="/portal/dashboard" replace />} />
+      {/* Public Landing Page (Unprotected) */}
+      <Route path="/" element={<Landing />} />
 
       {/* Auth routes — redirect away if already logged in */}
       <Route element={<AuthRoute />}>
@@ -72,7 +75,7 @@ export default function AppRoutes() {
       </Route>
 
       {/* Catch-all */}
-      <Route path="*" element={<Navigate to="/portal/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

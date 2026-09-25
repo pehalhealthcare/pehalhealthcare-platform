@@ -9,6 +9,7 @@ interface EmptyStateProps {
   description?: string;
   actionLabel?: string;
   onAction?: () => void;
+  compact?: boolean;
 }
 
 export default function EmptyState({
@@ -17,20 +18,21 @@ export default function EmptyState({
   description,
   actionLabel,
   onAction,
+  compact = false,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+    <div className={`flex flex-col items-center justify-center text-center ${compact ? 'py-8 px-3' : 'py-14 px-4'}`}>
       {Icon && (
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100">
-          <Icon className="h-7 w-7 text-slate-400" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
+          <Icon className="h-6 w-6 text-slate-400" />
         </div>
       )}
-      <h3 className="text-base font-semibold text-slate-800 mb-1">{title}</h3>
+      <h3 className="text-[13px] font-semibold text-slate-700 mb-1">{title}</h3>
       {description && (
-        <p className="text-sm text-slate-500 max-w-sm mb-5">{description}</p>
+        <p className="text-xs text-slate-400 max-w-xs mb-5 leading-relaxed">{description}</p>
       )}
       {actionLabel && onAction && (
-        <Button variant="primary" onClick={onAction}>
+        <Button variant="primary" size="sm" onClick={onAction}>
           {actionLabel}
         </Button>
       )}
